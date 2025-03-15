@@ -17,30 +17,33 @@
 
 <div class="alert alert-primary">Müşteri Listesi</div>
 <div id="customerlist">
-
+</div>
     <hr />
 
     <div>
         <label>Müşteri Adı</label>
+        <input type="text" id="txtcustomername" class="form-control" />
+        <br />
+        <label>Müşteri Soyadı</label>
+        <input type="text" id="txtcustomersurname" class="form-control" />
+        <br />
     </div>
 
-</div>
 
 
 
 
 
-<!--Ajax ile müşteri ekleme işlemi-->
+
+
+
+
+
+
+
+
 <script>
 
-
-</script>
-
-
-
-
-<!--Ajax ile müşteri listeleme işlemi-->
-<script>
     $("#btn1").click(function(){
          $.ajax({
              contentType:"application/json",
@@ -70,6 +73,22 @@
 
              }
          });
+    });
+
+    $("#btn2").click(function (){
+        let values = {
+            CustomerName:$("#txtcustomername").val(),
+            CustomerSurname: $("#txtcustomersurname").val(),
+        };
+
+        $.ajax({
+            url: "/Customer/CreateCustomer/",
+            data:values,
+            success:function(func2){
+                let result = jQuery.parseJSON(func2);
+                alert("İşlem Başarılı!");
+            }
+        });
     });
 </script>
 
